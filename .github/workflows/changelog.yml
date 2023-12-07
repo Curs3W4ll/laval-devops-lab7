@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       added_changelogs: ${{ steps.diff_changelogs.outputs.added_changelogs }}
-      added: ${{ diff_changelogs.outputs.added }}
+      added: ${{ steps.diff_changelogs.outputs.added }}
     steps:
       - uses: actions/checkout@v3
         with:
