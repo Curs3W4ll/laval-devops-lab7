@@ -24,7 +24,17 @@ jobs:
           REGX='^(changelogs)/(\w+\.json)$'
           FILTERED=$(echo $FORMATED | grep -E $REGX)
           echo "Detected added changelogs: $FILTERED"
+          echo "added=$FILTERED"
           echo "added=$FILTERED" >> $GITHUB_OUTPUT
+
+  test:
+    needs: get_changelogs
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: |
+          echo ${{ needs.get_changelogs.outputs.added }}
 
   notify:
     needs: get_changelogs
