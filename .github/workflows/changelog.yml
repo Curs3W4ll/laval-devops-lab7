@@ -22,10 +22,9 @@ jobs:
           ADDED=$(echo ${{ steps.files.outputs.added }})
           FORMATED=$(echo $ADDED | tr ' ' '\n')
           REGX='^(changelogs)/(\w+\.json)$'
-          echo $FORMATED | grep -E $REGX
-          # FILTERED=$(echo $FORMATED | grep -E $REGX)
-          # echo "Detected added changelogs: $FILTERED"
-          # echo "added=$FILTERED" >> $GITHUB_OUTPUT
+          FILTERED=$(echo $FORMATED | grep -E $REGX)
+          echo "Detected added changelogs: $FILTERED"
+          echo "added=$FILTERED" >> $GITHUB_OUTPUT
 
   notify:
     needs: get_changelogs
