@@ -20,7 +20,7 @@ jobs:
         if: ${{ steps.files.outputs.added }}
         run: |
           ADDED=$(echo ${{ steps.files.outputs.added }})
-          FORMATED=$(echo $ADDED | tr ' ' '\n' )
+          FORMATED=$(echo $ADDED | tr ' ' '\n')
           REGX='^(changelog)/(\w+\.json)$'
           FILTERED=$(echo $FORMATED | grep -E $REGX)
           echo "Detected added changelogs: $FILTERED"
