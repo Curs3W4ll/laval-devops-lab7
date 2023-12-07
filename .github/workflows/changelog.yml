@@ -21,7 +21,7 @@ jobs:
         run: |
           ADDED=$(echo ${{ steps.files.outputs.added }})
           FORMATED=$(echo $ADDED | tr ' ' '\n')
-          REGX='^(changelog)/(\w+\.json)$'
+          REGX='^(changelogs)/(\w+\.json)$'
           echo $FORMATED | grep -E $REGX
           # FILTERED=$(echo $FORMATED | grep -E $REGX)
           # echo "Detected added changelogs: $FILTERED"
@@ -48,7 +48,7 @@ jobs:
           SECURITY: ${{ secrets.TEAMS_WH_SECURITY }}
           SUPPORT: ${{ secrets.TEAMS_WH_SUPPORT }}
         run: |
-          TEMPLATE_PATH="changelog/.template/default.j2"
+          TEMPLATE_PATH="changelogs/.template/default.j2"
           HEADERS='Content-type: application/json'
           FILTERED=${{ needs.get_changelogs.outputs.added }}
           echo "Detected changelog update: $FILTERED"
